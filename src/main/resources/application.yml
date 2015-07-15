@@ -1,0 +1,9 @@
+test:
+  refreshlist:
+    colors:
+      - orange
+      - green
+      - blue
+      - pink
+      - red   
+      - yellow
