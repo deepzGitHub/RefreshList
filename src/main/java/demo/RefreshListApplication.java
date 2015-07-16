@@ -11,7 +11,7 @@ import config.InnerConfig;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan(basePackages={"config", "demo"})
-//@Import(InnerConfig.class) Import not working, InnerConfig will be picked since the @ComponentScan is on that package.
+//@Import(InnerConfig.class) When Import is done List on RefreshScope bean is not getting updated, InnerConfig will be picked since the @ComponentScan is on that package (but even this has the same issue).
 public class RefreshListApplication {
 
     public static void main(String[] args) {
