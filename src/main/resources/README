@@ -1,14 +1,9 @@
 Overview
-
-Application Overview:-
-
+    
     1. Right click and Run com.RefreshListApplication class
     2. com.config.RefreshListConfig.java is @ConfigurationProperties(prefix="test.refreshlist")
     3. application.yml has the list defined which is mapped to List colors, source in RefreshListConfig
-    
-Issue Overview :-
-
-	4. List refresh (addition and deletion) works perfect when ComponentScaned ONLY from the java configuration where the Bean is defined
+    4. List refresh (addition and deletion) works perfect when ComponentScaned ONLY from the java configuration where the Bean is defined
     5. Few Scenarios where the list is getting messed up when some entries are removed 
     Case 1 -
        Component Scan is on a java configuration class present in a package other than the package where RefreshScope bean is defined. (Since the configuration class is in root folder technically it scans all the folders below it) 
@@ -24,7 +19,7 @@ The latest source code here explains Case 2 where,
     
 To switch to Case 1 above, follow below steps
 
-    - Comment out @ComponentScan in InnerConfig.java
+    - Comment @ComponentScan in InnerConfig.java
 
 - Scenario in which this works as expected is when,
     - No @ComponentScan is defined in RefreshListApplication.java
