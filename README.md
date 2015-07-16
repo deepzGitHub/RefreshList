@@ -35,31 +35,52 @@ Please follow below steps for testing for Case 1,2:-
 Testing
 
 Step-1
+
     1.Start the application with no change in the application.yml
+	
     2. The size of List colors in RefreshListConfig will be 6 and source = background
+	
     3. This could be tested by using the below url, 
+	
         http://localhost:9003/test/refreshed
+		
         Response in browser :- source = background, colors = [orange, green, blue, pink, red, yellow]
         
         
 Step-2
+
     1. Update application.yml as below
+	
         1.1 remove entry red, yellow from the colors list
+		
         1.2 change source from background to border
+		
     2. Do a http POST on this url http://localhost:9003/refresh to refresh RefreshListConfig
+	
     3. Access http://localhost:9003/test/refreshed
-    Expected Result :- source = border, colors = [orange, green, blue, pink]
-    Actual Result :- source = border, colors = [orange, green, blue, pink, red, yellow]
-    ISSUE :- STRING source is GETTING updated correctly but not list - red, yellow not yet removed
+	
+		Expected Result :- source = border, colors = [orange, green, blue, pink]
+		
+		Actual Result :- source = border, colors = [orange, green, blue, pink, red, yellow]
+		
+		ISSUE :- STRING source is GETTING updated correctly but not list - red, yellow not yet removed
     
 Step-3
+
     1. After executing Step-2, update application.yml as below
+	
         1.1 Add a new entry white to the list 
+		
         1.2 change source from border to font
+		
     2. Do a http POST on this url http://localhost:9003/refresh to refresh RefreshListConfig
+	
     3. Access http://localhost:9003/test/refreshed
-    Expected Result :- source = font, colors = [orange, green, blue, pink, white]
-    Actual Result :- source = font, colors = [orange, green, blue, pink, white, yellow]
-    ISSUE :- STRING source is GETTING updated correctly but not list - red is replaced with white, yellow not yet removed
-        
+	
+		Expected Result :- source = font, colors = [orange, green, blue, pink, white]
+		
+		Actual Result :- source = font, colors = [orange, green, blue, pink, white, yellow]
+		
+		ISSUE :- STRING source is GETTING updated correctly but not list - red is replaced with white, yellow not yet removed
+			
 
