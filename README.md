@@ -1,23 +1,26 @@
-Overview
+#Overview
 
-Application Overview:-
+##Application Overview:
 
-    1. Right click and Run com.RefreshListApplication class
-    2. com.config.RefreshListConfig.java is @ConfigurationProperties(prefix="test.refreshlist")
-    3. application.yml has the list defined which is mapped to List colors, source in RefreshListConfig
+1.	Right click and Run `com.RefreshListApplication` class
+
+2.	`com.config.RefreshListConfig.java` is `@ConfigurationProperties(prefix="test.refreshlist")`
+
+3.	`application.yml` has the list defined which is mapped to List colors, source in `RefreshListConfig`
     
-Issue Overview :-
+##Issue Overview :
 
-	4. List refresh (addition and deletion) works perfect when ComponentScaned ONLY from the java configuration where the Bean is defined
-    5. Few Scenarios where the list is getting messed up when some entries are removed 
-    Case 1 -
-       Component Scan is on a java configuration class present in a package other than the package where RefreshScope bean is defined. (Since the configuration class is in root folder technically it scans all the folders below it) 
-    Case 2 -
-        The java configuration which defines the refresh scoped bean is scanned twice (One from the Configuration class present in the root of the source package and second scan is from the java configuration where refreshscope bean is defined.)
+4. List refresh (addition and deletion) works perfect when ComponentScaned ONLY from the java configuration where the Bean is defined
 
-In both Case 1,2 issue is only when and item is removed from list, additions, updates to string works perfect. This makes me think there is an issue with List
+5. Few Scenarios where the list is getting messed up when some entries are removed 
 
-The latest source code here explains Case 2 where,
+	1. Component Scan is on a java configuration class present in a package other than the package where RefreshScope bean is defined. (Since the configuration class is in root folder technically it scans all the folders below it) 
+	
+	2. The java configuration which defines the refresh scoped bean is scanned twice (One from the Configuration class present in the root of the source package and second scan is from the java configuration where refreshscope bean is defined.)
+
+In both Case i and ii issue is only when and item is removed from list, additions, updates to string works perfect. This makes me think there is an issue with List
+
+The latest source code here explains Case ii where,
 
     - RefreshListApplication.java has @ComponentScan and its on the root package. It is Importing InnerConfig.java
     - InnerConfig.java defined RefreshListConfig bean which is @RefreshScope and also do @ComponentScan(basePackages={"com.config"})
@@ -32,9 +35,9 @@ To switch to Case 1 above, follow below steps
           
 Please follow below steps for testing for Case 1,2:-       
     
-Testing
+#Testing
 
-Step-1
+##Step 1
 
     1.Start the application with no change in the application.yml
 	
@@ -47,7 +50,7 @@ Step-1
         Response in browser :- source = background, colors = [orange, green, blue, pink, red, yellow]
         
         
-Step-2
+##Step 2
 
     1. Update application.yml as below
 	
@@ -65,7 +68,7 @@ Step-2
 		
 		ISSUE :- STRING source is GETTING updated correctly but not list - red, yellow not yet removed
     
-Step-3
+##Step 3
 
     1. After executing Step-2, update application.yml as below
 	
